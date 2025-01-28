@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  bookingservice:
+    build:
+      context: ./booking-service
+    container_name: booking-service
+    ports:
+      - "8087:8087"
+    networks:
+      - shared-network
+    depends_on:
+      - rabbitmq
+
+networks:
+  shared-network:
+    external: true

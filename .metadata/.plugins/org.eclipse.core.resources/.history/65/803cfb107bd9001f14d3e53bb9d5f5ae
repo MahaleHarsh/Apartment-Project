@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  bookingservice:
+    build:
+      context: .
+    ports:
+      - "8088:8087"

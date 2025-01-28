@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: apartment_service
+          uri: http://apartment-service:8084
+          predicates:
+            - Path=/apartment/**
+        - id: booking_service
+          uri: http://booking-service:8087
+          predicates:
+            - Path=/booking/**
+        - id: search_service
+          uri: http://search-service:8083
+          predicates:
+            - Path=/search/**
+            
+            

@@ -1,0 +1,7 @@
+com\example\apartmentservice\service\ApartmentService.class
+com\example\apartmentservice\service\ApartmentServiceClient.class
+com\example\apartmentservice\ApartmentServiceApplication.class
+com\example\apartmentservice\repository\ApartmentRepository.class
+com\example\apartmentservice\controller\ApartmentController.class
+com\example\apartmentservice\config\RabbitMQConfig.class
+com\example\apartmentservice\model\Apartment.class

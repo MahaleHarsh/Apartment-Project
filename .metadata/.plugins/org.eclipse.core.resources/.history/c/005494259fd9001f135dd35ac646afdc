@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  apigateway:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - apartmentservice
+      - bookingservice
+      - searchservice
+    networks:
+      - microservices-network
+
+  apartmentservice:
+    build:
+      context: ../apartment-service
+    ports:
+      - "8084:8084"
+    networks:
+      - microservices-network
+
+  bookingservice:
+    build:
+      context: ../booking-service
+    ports:
+      - "8087:8087"
+    networks:
+      - microservices-network
+
+  searchservice:
+    build:
+      context: ../search-service
+    ports:
+      - "8083:8083"
+    networks:
+      - microservices-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

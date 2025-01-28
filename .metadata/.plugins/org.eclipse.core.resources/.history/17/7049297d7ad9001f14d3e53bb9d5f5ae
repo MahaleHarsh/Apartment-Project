@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  searchservice:
+    build:
+      context: .
+    ports:
+      - "8089:8089"

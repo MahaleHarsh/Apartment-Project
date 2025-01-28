@@ -1,0 +1,29 @@
+package com.example.bookingservice.service;
+
+import com.example.bookingservice.model.Apartment;
+import com.example.bookingservice.repository.ApartmentRepository; // Local repository in Booking Service
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+
+@Service
+public class InitializationService {
+    @Autowired
+    private ApartmentRepository apartmentRepository;
+
+    public void initializeApartments() {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://apartment-service:8084/apartment/list"; // Apartment Service API endpoint
+
+        // Fetch apartments from Apartment Service
+        Apartment[] apartments = restTemplate.getForObject(url, Apartment[].class);
+
+        if (apartments != null) {
+            // Save apartments in the local repository
+            apartmentRepository.saveAll(Arrays.asList(apartments));
+            System.out.println("Initialized Apartments: " + apartments.length);
+        }
+    }
+}

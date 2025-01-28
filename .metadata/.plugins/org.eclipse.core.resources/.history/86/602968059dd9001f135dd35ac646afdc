@@ -1,0 +1,13 @@
+server.port=8083
+
+# SQLite Database Configuration
+spring.datasource.url=jdbc:sqlite:search.db
+spring.datasource.driver-class-name=org.sqlite.JDBC
+spring.jpa.hibernate.ddl-auto=update
+
+# RabbitMQ Configuration
+spring.rabbitmq.host=rabbitmq
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+spring.jpa.properties.hibernate.dialect=org.hibernate.community.dialect.SQLiteDialect

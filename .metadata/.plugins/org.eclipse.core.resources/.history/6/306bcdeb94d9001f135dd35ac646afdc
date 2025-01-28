@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - shared-network
+    depends_on:
+      - rabbitmq
+      - apartmentservice
+      - bookingservice
+      - searchservice
+
+networks:
+  shared-network:
+    external: true

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="booking-service"/>
+<aop-project name="apartment-service"/>
+<aop-project name="api-gateway"/>
+<aop-project name="search-service"/>
+</aop-reference-model>

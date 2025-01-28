@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: apartment_service
+          uri: http://apartmentservice:8084
+          predicates:
+            - Path=/apartment/**
+        - id: booking_service
+          uri: http://bookingservice:8087 # Docker service name
+          predicates:
+            - Path=/booking/**
+        - id: search_service
+          uri: http://searchservice:8083 # Docker service name
+          predicates:
+            - Path=/search/**

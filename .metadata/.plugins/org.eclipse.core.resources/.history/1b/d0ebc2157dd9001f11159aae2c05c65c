@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  apartmentservice:
+    build:
+      context: ./apartment-service
+    container_name: apartment-service
+    ports:
+      - "8084:8084"
+    networks:
+      - shared-network
+    depends_on:
+      - rabbitmq
+
+networks:
+  shared-network:
+    external: true

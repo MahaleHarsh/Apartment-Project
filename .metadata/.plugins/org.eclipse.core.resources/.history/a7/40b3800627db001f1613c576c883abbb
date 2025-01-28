@@ -1,0 +1,18 @@
+spring.main.web-application-type=reactive
+server.port=8084
+
+# RabbitMQ Configuration
+spring.rabbitmq.host=rabbitmq
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+
+
+# Database Configuration
+spring.jpa.properties.hibernate.dialect=org.hibernate.community.dialect.SQLiteDialect
+spring.rabbitmq.listener.simple.declare-queues=true
+spring.rabbitmq.listener.simple.retry.enabled=true
+spring.rabbitmq.listener.simple.retry.max-attempts=5
+spring.rabbitmq.listener.simple.retry.initial-interval=1000
+spring.rabbitmq.listener.simple.retry.multiplier=2.0
+spring.rabbitmq.listener.simple.retry.max-interval=5000

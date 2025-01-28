@@ -1,0 +1,20 @@
+server:
+  port: 8080 # Gateway listens on port 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: apartment_service
+          uri: http://apartmentservice:8084
+          predicates:
+            - Path=/apartment/**
+        - id: booking_service
+          uri: http://bookingservice:8087
+          predicates:
+            - Path=/booking/**
+        - id: search_service
+          uri: http://searchservice:8083
+          predicates:
+            - Path=/search/**
+

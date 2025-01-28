@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  apigateway:
+    build:
+      context: .
+    container_name: apigateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+      - apartmentservice
+      - bookingservice
+      - searchservice
+    networks:
+      - microservices-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    name: microservices-network

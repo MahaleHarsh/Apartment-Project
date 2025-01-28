@@ -1,0 +1,14 @@
+# Use OpenJDK as the base image
+FROM openjdk:17-jdk-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy the jar file from target directory
+COPY target/*.jar app.jar
+
+# Expose the application port
+EXPOSE 8080
+
+# Entry point to run the jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

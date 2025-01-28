@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: apartment_service
+          uri: http://apartmentservice:8084
+          predicates:
+            - Path=/apartment/**
+        - id: booking_service
+          uri: http://bookingservice:8087
+          predicates:
+            - Path=/booking/**

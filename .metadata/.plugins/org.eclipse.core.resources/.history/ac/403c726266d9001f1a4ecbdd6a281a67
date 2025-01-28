@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  apartmentservice:
+    build: .
+    ports:
+      - "8084:8084"

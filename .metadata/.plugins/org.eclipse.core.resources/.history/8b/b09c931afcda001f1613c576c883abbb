@@ -1,0 +1,74 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - microservices-network
+
+  apigateway:
+    build:
+      context: ../api-gateway
+    container_name: apigateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+      - apartmentservice
+      - bookingservice
+      - searchservice
+    networks:
+      - microservices-network
+
+  apartmentservice:
+    build:
+      context: .
+    container_name: apartmentservice
+    ports:
+      - "8084:8084"
+    volumes:
+      - apartment-db:/data
+    depends_on:
+      - rabbitmq
+    networks:
+      - microservices-network
+
+  bookingservice:
+    build:
+      context: ../booking-service
+    container_name: bookingservice
+    ports:
+      - "8087:8087"
+    volumes:
+      - booking-db:/data
+    depends_on:
+      - rabbitmq
+    networks:
+      - microservices-network
+
+  searchservice:
+    build:
+      context: ../search-service
+    container_name: searchservice
+    ports:
+      - "8083:8083"
+    volumes:
+      - search-db:/data
+    depends_on:
+      - rabbitmq
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    name: microservices-network
+
+volumes:
+  apartment-db:
+  booking-db:
+  search-db:

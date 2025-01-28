@@ -1,0 +1,13 @@
+com\example\searchservice\listener\ApartmentEventListener.class
+com\example\searchservice\listener\BookingEventListener.class
+com\example\searchservice\SearchServiceApplication.class
+com\example\searchservice\config\RabbitMQConfig.class
+com\example\searchservice\listener\BookingEventListener$EventMessage.class
+com\example\searchservice\model\Booking.class
+com\example\searchservice\DataInitializer.class
+com\example\searchservice\repository\ApartmentRepository.class
+com\example\searchservice\service\InitializationService.class
+com\example\searchservice\repository\BookingRepository.class
+com\example\searchservice\model\Apartment.class
+com\example\searchservice\controller\SearchController.class
+com\example\searchservice\service\SearchService.class

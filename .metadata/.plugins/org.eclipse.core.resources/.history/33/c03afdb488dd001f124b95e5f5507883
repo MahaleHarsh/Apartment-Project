@@ -1,0 +1,44 @@
+package com.example.apartmentservice.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class RabbitMQConfig {
+
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange("microservices-exchange", true, false);
+    }
+
+    @Bean
+    public Queue apartmentQueueBooking() {
+        return new Queue("apartmentQueueBooking", true);
+    }
+
+    @Bean
+    public Queue apartmentQueueSearch() {
+        return new Queue("apartmentQueueSearch", true);
+    }
+
+    @Bean
+    public Binding bookingBinding(Queue apartmentQueueBooking, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(apartmentQueueBooking).to(fanoutExchange);
+    }
+
+    @Bean
+    public Binding searchBinding(Queue apartmentQueueSearch, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(apartmentQueueSearch).to(fanoutExchange);
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(org.springframework.amqp.rabbit.connection.ConnectionFactory connectionFactory) {
+        return new RabbitAdmin(connectionFactory);
+    }
+}

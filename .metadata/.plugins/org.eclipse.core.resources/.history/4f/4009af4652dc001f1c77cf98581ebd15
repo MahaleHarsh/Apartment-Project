@@ -1,0 +1,5 @@
+FROM openjdk:17-jdk-slim
+VOLUME /tmp
+COPY target/booking-service-0.0.1-SNAPSHOT.jar app.jar
+COPY booking.db /app/booking.db
+ENTRYPOINT ["java", "-jar", "app.jar"]

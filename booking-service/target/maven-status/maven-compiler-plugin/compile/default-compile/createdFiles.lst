@@ -1,0 +1,15 @@
+com\example\bookingservice\listener\ApartmentEventListener.class
+com\example\bookingservice\repository\BookingRepository.class
+com\example\bookingservice\DataInitializer.class
+com\example\bookingservice\controller\BookingController.class
+com\example\bookingservice\BookingServiceApplication.class
+com\example\bookingservice\model\Apartment.class
+com\example\bookingservice\exception\GlobalExceptionHandler.class
+com\example\bookingservice\repository\ApartmentRepository.class
+com\example\bookingservice\service\BookingService.class
+com\example\bookingservice\exception\InvalidApartmentIdException.class
+com\example\bookingservice\service\InitializationService.class
+com\example\bookingservice\config\RabbitMQConfig.class
+com\example\bookingservice\service\BookingService$EventMessage.class
+com\example\bookingservice\config\JacksonConfig.class
+com\example\bookingservice\model\Booking.class

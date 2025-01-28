@@ -1,0 +1,13 @@
+server.port=8087
+# SQLite Configuration
+spring.datasource.url=jdbc:sqlite:booking.db
+spring.datasource.driver-class-name=org.sqlite.JDBC
+spring.jpa.hibernate.ddl-auto=update
+
+# RabbitMQ Configuration
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+spring.jpa.properties.hibernate.dialect=org.hibernate.community.dialect.SQLiteDialect
+spring.main.web-application-type=reactive # Align with other services

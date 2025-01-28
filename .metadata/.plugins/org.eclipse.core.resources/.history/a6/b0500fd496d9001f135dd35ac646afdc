@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  searchservice:
+    build:
+      context: ./search-service
+    container_name: search-service
+    ports:
+      - "8083:8083"
+    networks:
+      - shared-network
+    depends_on:
+      - rabbitmq
+
+networks:
+  shared-network:
+    external: true

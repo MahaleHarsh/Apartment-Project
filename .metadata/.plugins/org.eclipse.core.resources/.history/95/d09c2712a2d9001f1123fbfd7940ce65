@@ -1,0 +1,29 @@
+services:
+  apartmentservice:
+    build:
+      context: .
+    container_name: apartmentservice
+    ports:
+      - "8084:8084"
+    depends_on:
+      - rabbitmq
+    networks:
+      - microservices-network
+    restart: always # Ensures service retries if it fails
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmqctl status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

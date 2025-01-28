@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  bookingservice:
+    build:
+      context: .
+    ports:
+      - "8087:8087" # Match internal and external port
+    volumes:
+      - ./data/booking:/data # Persist SQLite database
