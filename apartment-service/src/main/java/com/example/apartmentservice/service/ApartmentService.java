@@ -24,7 +24,7 @@ public class ApartmentService {
     @PostConstruct
     public void initializeQueues() {
         rabbitTemplate.convertAndSend("microservices-exchange", "apartment.add", "Test Apartment Event");
-        System.out.println("✅ Apartment event sent to RabbitMQ");
+        System.out.println(" Apartment event sent to RabbitMQ");
     }
     
     public void publishEvent(String routingKey, String message) {

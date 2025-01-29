@@ -4,4 +4,6 @@
     <fullyQualifiedTypeName name="com.example.bookingservice.model.Apartment"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="javax.naming.Binding"/>
+    <fullyQualifiedTypeName name="com.rabbitmq.client.ConnectionFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.amqp.rabbit.connection.ConnectionFactory"/>
 </qualifiedTypeNameHistroy>
