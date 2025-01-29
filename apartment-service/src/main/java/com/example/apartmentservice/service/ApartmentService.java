@@ -1,12 +1,15 @@
 package com.example.apartmentservice.service;
 
-import com.example.apartmentservice.model.Apartment;
-import com.example.apartmentservice.repository.ApartmentRepository;
+import java.util.List;
+
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.apartmentservice.model.Apartment;
+import com.example.apartmentservice.repository.ApartmentRepository;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class ApartmentService {
@@ -18,6 +21,12 @@ public class ApartmentService {
 
     private final String exchangeName = "microservices-exchange";
 
+    @PostConstruct
+    public void initializeQueues() {
+        rabbitTemplate.convertAndSend("microservices-exchange", "apartment.add", "Test Apartment Event");
+        System.out.println("✅ Apartment event sent to RabbitMQ");
+    }
+    
     public void publishEvent(String routingKey, String message) {
         try {
             rabbitTemplate.convertAndSend(exchangeName, routingKey, message);

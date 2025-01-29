@@ -1,4 +1,3 @@
-version: "3.8"
 
 services:
   rabbitmq:
@@ -10,6 +9,12 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+   
 
   apartment-service:
     build:
@@ -23,7 +28,7 @@ services:
     depends_on:
       - rabbitmq
     volumes:
-      - apartment-data:/app
+      - ./apartment-service/apartments.db:/app/apartments.db  # ✅ Correct path
 
   booking-service:
     build:
@@ -38,7 +43,7 @@ services:
       - rabbitmq
       - apartment-service
     volumes:
-      - booking-data:/app
+      - ./booking-service/booking.db:/app/booking.db  # ✅ Correct path
 
   search-service:
     build:
@@ -52,7 +57,7 @@ services:
     depends_on:
       - rabbitmq
     volumes:
-      - search-data:/app
+      - ./search-service/search.db:/app/search.db  # ✅ Correct path
 
   api-gateway:
     build:
